@@ -7,9 +7,13 @@ $sql->execute([$_POST['username']]);
 $result = $sql->fetch(PDO::FETCH_ASSOC);
 
 if ($result && $_POST['pass'] === $result['password']) { 
+     $update_sql = $pdo->prepare('UPDATE user SET created_at = NOW() WHERE id = ?');
+    $update_sql->execute([$result['id']]);//ログイン時間更新
+
     $_SESSION['user'] = [
         'id' => $result['id'],
-        'name' => $result['username']
+        'name' => $result['username'],
+        'created_at' => date('Y-m-d H:i:s')
     ];
     header("Location: form.php");
     exit();
