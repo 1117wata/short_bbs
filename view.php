@@ -1,3 +1,14 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>一言掲示板 - 投稿一覧</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <h1>📜 投稿一覧</h1>
+    <p><a href="form.php">← 投稿フォームへ戻る</a></p>
+<link rel="stylesheet" href="css/style.css">
 <?php
 $pdo = new PDO('mysql:host=localhost;dbname=user;charset=utf8', 'root', '');
 
