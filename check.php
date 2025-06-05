@@ -15,6 +15,8 @@ if ($result && $_POST['pass'] === $result['password']) {
         'name' => $result['username'],
         'created_at' => date('Y-m-d H:i:s')
     ];
+     // ✅ ユーザー名をセッションに保存
+    $_SESSION['username'] = $result['username'];
     header("Location: form.php");
     exit();
 } else {
