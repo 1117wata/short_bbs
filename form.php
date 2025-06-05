@@ -1,4 +1,8 @@
-<?php session_start(); ?>
+<?php
+session_start();
+echo "セッション中のuser_id: " . ($_SESSION['user_id'] ?? '未ログイン');
+?>
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>

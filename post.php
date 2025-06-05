@@ -1,15 +1,26 @@
 <?php
-$name = htmlspecialchars($_POST['name'] ?? '名無し');
-$comment = htmlspecialchars($_POST['comment'] ?? '');
-$time = date('Y-m-d H:i:s');
+session_start();
 
-if (trim($comment) === '') {
+if (!isset($_SESSION['user_id'])) {
+    die("ログインしていません。");
+}
+
+$comment = trim($_POST['comment'] ?? '');
+if ($comment === '') {
     header("Location: form.php");
     exit;
 }
 
-$entry = "$time\t$name\t$comment\n";
-file_put_contents('comments.txt', $entry, FILE_APPEND);
-header("Location: view.php");
-exit;
-?>
+try {
+    $pdo = new PDO('mysql:host=localhost;dbname=user;charset=utf8', 'root', '');
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    $stmt = $pdo->prepare("INSERT INTO comment (user_id, content) VALUES (?, ?)");
+    $stmt->execute([$_SESSION['user_id'], $comment]);
+
+    header("Location: view.php");
+    exit;
+
+} catch (PDOException $e) {
+    echo "DBエラー: " . htmlspecialchars($e->getMessage());
+}

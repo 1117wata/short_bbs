@@ -17,6 +17,8 @@ if ($result && $_POST['pass'] === $result['password']) {
     ];
      // ✅ ユーザー名をセッションに保存
     $_SESSION['username'] = $result['username'];
+    $_SESSION['user_id'] = $result['id']; // ← これを追加！
+
     header("Location: form.php");
     exit();
 } else {
