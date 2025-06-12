@@ -10,7 +10,7 @@
     <p><a href="form.php">← 投稿フォームへ戻る</a></p>
 <link rel="stylesheet" href="css/style.css">
 <?php
-$pdo = new PDO('mysql:host=localhost;dbname=user;charset=utf8', 'root', '');
+$pdo = new PDO('mysql:host=mysql304.phy.lolipop.lan;dbname=LAA1602730-php2024;charset=utf8', 'LAA1602730', 'Watabeno1417');
 
 $sql = $pdo->query("
     SELECT comment.content, comment.created_at, user.username

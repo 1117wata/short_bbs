@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-$pdo = new PDO('mysql:host=localhost;dbname=user;charset=utf8', 'root', '');
+$pdo = new PDO('mysql:host=mysql304.phy.lolipop.lan;dbname=LAA1602730-php2024;charset=utf8', 'LAA1602730', 'Watabeno1417');
 $sql = $pdo->prepare('SELECT * FROM user WHERE username = ?');
 $sql->execute([$_POST['username']]);
 $result = $sql->fetch(PDO::FETCH_ASSOC);
